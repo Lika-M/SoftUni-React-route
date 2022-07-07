@@ -1,3 +1,4 @@
+import {Link, NavLink} from 'react-router-dom';
 
 export default function Header (){
 
@@ -5,24 +6,23 @@ export default function Header (){
     return (
         <header id="site-header">
         <nav className="navbar">
-
           <section className="navbar-dashboard">
             <div className="first-bar">
-              <a href="#">Dashboard</a>
-              <a className="button" href="#">My Pets</a>
-              <a className="button" href="#">Add Pet</a>
+              <NavLink  to="#">Dashboard</NavLink>
+              <aNavLink className="button" to="/my-pets">My Pets</aNavLink>
+              <NavLink  className="button" to="/create">Add Pet</NavLink>
             </div>
             <div className="second-bar">
               <ul>
                 <lin>Welcome, {}!</lin>
-                <li><a href="#"><i className="fas fa-sign-out-alt"></i> Logout</a></li>
+                <li><NavLink to="//logout"><i className="fas fa-sign-out-alt"></i> Logout</NavLink></li>
               </ul>
             </div>
           </section>
           <section className="navbar-anonymous">
             <ul>
-              <li><a href="#"><i className="fas fa-user-plus"></i> Register</a></li>
-              <li><a href="#"><i className="fas fa-sign-in-alt"></i> Login</a></li>
+              <li><NavLink to="/register"><i className="fas fa-user-plus"></i> Register</NavLink></li>
+              <li><NavLink to="/login"><i className="fas fa-sign-in-alt"></i> Login</NavLink></li>
             </ul>
           </section>
         </nav>

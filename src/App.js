@@ -10,6 +10,8 @@ import Register from "./components/Main/Register/Register.js";
 import DeletePet from "./components/Main/DeletePet/DeletePet.js"
 import DetailsMyPet from "./components/Main/DetailsMyPet/DetailsMyPet.js";
 
+import { Routes, Route } from 'react-router-dom';
+
 
 function App() {
   return (
@@ -19,19 +21,25 @@ function App() {
       <Header />
 
       <main id="site-content">
+{/* 
         <section className="basic">
           <h1> Welcome to pet my pet!</h1>
-        </section>
-        <Login />
-        <Register />
-        <Create />
-        <MyPet />
-        <OtherPet />
-        <DeletePet />
-        <DetailsMyPet />
-        <DetailsOtherPet />
-        <Dashboard />
-        <MyPets />
+        </section> */}
+
+        <Routes>
+          <Route path="/" element={<Dashboard whatEver="something" />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/my-pets" element={<MyPets />} />
+          <Route path="/create" element={<Create />} />
+          {/* <Route path="/myPet" element={<MyPet />} />
+          <Route path="/otherPet" element={<OtherPet />} />
+          <Route path="/deletePet" element={<DeletePet />} />
+          <Route path="/detailsMyPet" element={<DetailsMyPet />} />
+          <Route path="/detailsOtherPet" element={<DetailsOtherPet />} /> */}
+
+        </Routes>
+
       </main>
 
     </div>
