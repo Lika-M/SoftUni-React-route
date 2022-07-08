@@ -11,24 +11,45 @@ import DeletePet from "./components/Main/DeletePet/DeletePet.js"
 import DetailsMyPet from "./components/Main/DetailsMyPet/DetailsMyPet.js";
 
 import { Routes, Route } from 'react-router-dom';
+import * as authService from '../src/services/authService.js';
+import { useState, useEffect } from 'react';
 
 
 function App() {
+
+  const [userInfo, setUserInfo] = useState({ username: '', isAuthenticated: false });
+  useEffect(() => {
+    
+    let user = authService.getUserData();
+    
+    setUserInfo({
+      user,
+      isAuthenticated: Boolean(user)
+    })
+
+  }, []);
+
+  function onLogin(username) {
+    setUserInfo({
+      user: username,
+      isAuthenticated: true
+    })
+  }
+
   return (
 
     <div id="container">
-
-      <Header />
-
+      {/* all props of object as attributes */}
+      <Header {... userInfo}/> 
       <main id="site-content">
-{/* 
+        {/* 
         <section className="basic">
           <h1> Welcome to pet my pet!</h1>
         </section> */}
 
         <Routes>
           <Route path="/" element={<Dashboard whatEver="something" />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login onLogin={onLogin} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/my-pets" element={<MyPets />} />
           <Route path="/create" element={<Create />} />

@@ -94,6 +94,7 @@ img {
     background-color: #fff;
     border-radius: 20px;
     text-align: center;
+    box-shadow: 1px 10px 10px grey;
 }
 
 .detailsMyPet>p:nth-child(2),

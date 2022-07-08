@@ -1,9 +1,9 @@
 
-export default function MyPets (){
+export default function MyPets() {
 
 
-    return (
-      <section className="my-pets">
+  return (
+    <section className="my-pets">
       <h1>My Pets</h1>
       <ul className="my-pets-list">
         <section className="myPet">
@@ -41,5 +41,5 @@ export default function MyPets (){
         </section>
       </ul>
     </section>
-    )
+  )
 }
