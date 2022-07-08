@@ -1,9 +1,19 @@
+import PetCard from "./PetCard/PetCard.js";
+import { PetService } from "../../../services/PetService.js";
+import { useState, useEffect } from 'react';
 
-export default function Dashboard (){
+export default function Dashboard() {
 
+  const [pets, setPets] = useState([]);
+  useEffect( () => {
+    PetService()
+    .then(result => {
+      setPets(result);
+    })
+  }, [])
 
-    return (
-      <section className="dashboard">
+  return (
+    <section className="dashboard">
       <h1>Dashboard</h1>
       <nav className="navbar">
         <ul>
@@ -16,18 +26,8 @@ export default function Dashboard (){
         </ul>
       </nav>
       <ul className="other-pets-list">
-        <li className="otherPet">
-          <h3>Name: Gosho</h3>
-          <p>Category: Cat</p>
-          <p className="img"><img src="https://pics.clipartpng.com/Cat_PNG_Clip_Art-2580.png" /></p>
-          <p className="description">This is not my cat Gosho</p>
-          <div className="pet-info">
-            <a href="#"><button className="button"><i className="fas fa-heart"></i> Pet</button></a>
-            <a href="#"><button className="button">Details</button></a>
-            <i className="fas fa-heart"></i> <span> 2</span>
-          </div>
-        </li>
-        <li className="otherPet">
+        {pets.map(x => <PetCard key={x._id} pet={x} />)}
+        {/* <li className="otherPet">
           <h3>Name: Gosho</h3>
           <p>Category: Cat</p>
           <p className="img"><img src="https://pics.clipartpng.com/Dalmatian_Dog_PNG_Clip_Art-2581.png" /></p>
@@ -49,8 +49,8 @@ export default function Dashboard (){
             <a href="#"><button className="button">Details</button></a>
             <i className="fas fa-heart"></i> <span> 4</span>
           </div>
-        </li>
+        </li> */}
       </ul>
     </section>
-    )
+  )
 }
