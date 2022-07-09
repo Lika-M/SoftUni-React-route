@@ -1,6 +1,9 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import PetList from './PetList/PetList.js';
 
+import { ReactComponent as Logo } from '../../../logo.svg';
+import './logo.css'
+
 export default function Dashboard() {
 
   return (
@@ -16,6 +19,7 @@ export default function Dashboard() {
           <li><Link to="#">Other</Link></li>
         </ul>
       </nav>
+      <Logo className="logo" />
       <Routes>
         <Route path='/all' element={<PetList />} />
         <Route path='/cats' element={<p>All cats here...</p>} />
