@@ -21,7 +21,6 @@ export default function Header({
         <li><NavLink to="/login"><i className="fas fa-sign-in-alt"></i> Login</NavLink></li>
       </ul>
     </section>
-
   );
 
   return (

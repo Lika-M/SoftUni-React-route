@@ -1,18 +1,14 @@
 import Create from "./components/Main/Create/Create.js";
 import Dashboard from "./components/Main/Dashboard/Dashboard.js";
-import DetailsOtherPet from "./components/Main/DetailsOtherPet/DetailsOtherPet.js";
 import Header from "./components/Header/Header.js";
 import Login from "./components/Main/Login/Login.js"
-import MyPet from "./components/Main/MyPet/MyPet.js";
-import MyPets from "./components/Main/MyPets/MyPets.js";
-import OtherPet from "./components/Main/OtherPet/OtherPet.js";
 import Register from "./components/Main/Register/Register.js";
-import DeletePet from "./components/Main/DeletePet/DeletePet.js"
-import DetailsMyPet from "./components/Main/DetailsMyPet/DetailsMyPet.js";
+import Details from "./components/Main/Details/Details.js";
 
 import { Routes, Route } from 'react-router-dom';
 import * as authService from '../src/services/authService.js';
 import { useState, useEffect } from 'react';
+import Logout from "./components/Main/Logout/Logout.js";
 
 
 function App() {
@@ -36,6 +32,13 @@ function App() {
     })
   }
 
+  function onLogout (username){
+    setUserInfo({
+      user: null,
+      isAuthenticated: false
+    })
+  }
+
   return (
 
     <div id="container">
@@ -48,17 +51,13 @@ function App() {
         </section> */}
 
         <Routes>
-          <Route path="/" element={<Dashboard whatEver="something" />} />
+          <Route path="/*" element={<Dashboard whatEver="something" />} />
           <Route path="/login" element={<Login onLogin={onLogin} />} />
+          <Route path="/logout" element={<Logout onLogout={onLogout} />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/my-pets" element={<MyPets />} />
           <Route path="/create" element={<Create />} />
-          {/* <Route path="/myPet" element={<MyPet />} />
-          <Route path="/otherPet" element={<OtherPet />} />
-          <Route path="/deletePet" element={<DeletePet />} />
-          <Route path="/detailsMyPet" element={<DetailsMyPet />} />
-          <Route path="/detailsOtherPet" element={<DetailsOtherPet />} /> */}
-
+          <Route path="/details/:petId" element={<Details />} />
+          
         </Routes>
 
       </main>

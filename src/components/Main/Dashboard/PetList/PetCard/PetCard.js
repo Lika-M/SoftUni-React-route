@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom'
+
 export default function PetCard ({
     pet
 }){
@@ -9,9 +11,9 @@ export default function PetCard ({
         <p className="img"><img src={pet.imgUrl} /></p>
         <p className="description">{pet.description}</p>
         <div className="pet-info">
-          <a href="#"><button className="button"><i className="fas fa-heart"></i> Pet</button></a>
-          <a href="#"><button className="button">Details</button></a>
-          <i className="fas fa-heart"></i> <span>{pet.likes}</span>
+          {/* <Link to="#"><button className="button"><i className="fas fa-heart"></i> Pet</button></Link> */}
+          <Link to={`/details/${pet._id}`}><button className="button">Details</button></Link>
+          <i className="fas fa-heart"></i> <span>Likes: {pet.likes}</span>
         </div>
       </li>
     )

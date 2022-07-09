@@ -1,33 +1,28 @@
-import PetCard from "./PetCard/PetCard.js";
-import { PetService } from "../../../services/PetService.js";
-import { useState, useEffect } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+import PetList from './PetList/PetList.js';
 
 export default function Dashboard() {
-
-  const [pets, setPets] = useState([]);
-  useEffect( () => {
-    PetService()
-    .then(result => {
-      setPets(result);
-    })
-  }, [])
 
   return (
     <section className="dashboard">
       <h1>Dashboard</h1>
       <nav className="navbar">
         <ul>
-          <li><a href="#">All</a></li>
-          <li><a href="#">Cats</a></li>
-          <li><a href="#">Dogs</a></li>
-          <li><a href="#">Parrots</a></li>
-          <li><a href="#">Reptiles</a></li>
-          <li><a href="#">Other</a></li>
+          <li><Link to="all">All</Link></li>
+          <li><Link to="cats">Cats</Link></li>
+          <li><Link to="dogs">Dogs</Link></li>
+          <li><Link to="#">Parrots</Link></li>
+          <li><Link to="#">Reptiles</Link></li>
+          <li><Link to="#">Other</Link></li>
         </ul>
       </nav>
-      <ul className="other-pets-list">
-        {pets.map(x => <PetCard key={x._id} pet={x} />)}
-        {/* <li className="otherPet">
+      <Routes>
+        <Route path='/all' element={<PetList />} />
+        <Route path='/cats' element={<p>All cats here...</p>} />
+        <Route path='/dogs' element={<p>All dogs here...</p>} />
+      </Routes>
+
+      {/* <li className="otherPet">
           <h3>Name: Gosho</h3>
           <p>Category: Cat</p>
           <p className="img"><img src="https://pics.clipartpng.com/Dalmatian_Dog_PNG_Clip_Art-2581.png" /></p>
@@ -50,7 +45,7 @@ export default function Dashboard() {
             <i className="fas fa-heart"></i> <span> 4</span>
           </div>
         </li> */}
-      </ul>
+
     </section>
   )
 }

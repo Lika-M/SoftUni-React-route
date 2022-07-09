@@ -1,10 +1,35 @@
+import * as petService from '../../../services/PetService.js'
+import { useNavigate } from 'react-router-dom';
 
-export default function Create (){
+export default function Create() {
 
+  const navigate = useNavigate();
 
-    return (
-      <section className="create">
-      <form action="#" method="post">
+  const onCreate = (ev) => {
+    ev.preventDefault();
+
+    const formData = new FormData(ev.currentTarget);
+    const name = formData.get('name');
+    const category = formData.get('category');
+    const description = formData.get('description');
+    const imgUrl = formData.get('imageURL');
+
+    petService.create({
+      name,
+      category,
+      description,
+      imgUrl,
+      likes: 0
+    })
+      .then(result => {
+        navigate('/dashboard')
+      })
+
+  }
+
+  return (
+    <section className="create">
+      <form onSubmit={onCreate} method="post">
         <fieldset>
           <legend>Add new Pet</legend>
           <p className="field">
@@ -42,9 +67,9 @@ export default function Create (){
               <span className="actions"></span>
             </span>
           </p>
-          <input className="button submit" type="submit"  value="Add Pet" />
+          <input className="button submit" type="submit" value="Add Pet" />
         </fieldset>
       </form>
     </section>
-    )
+  )
 }
