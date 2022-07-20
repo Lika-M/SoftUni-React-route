@@ -16,9 +16,9 @@ export default function Create() {
 
     petService.create({
       name,
-      category,
       description,
       imgUrl,
+      category,
       likes: 0
     })
       .then(result => {

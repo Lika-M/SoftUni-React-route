@@ -28,7 +28,7 @@ export default function Header({
       <nav className="navbar">
         <section className="navbar-dashboard">
           <div className="first-bar">
-            <NavLink to="/">Dashboard</NavLink>
+            <NavLink to="/dashboard">Dashboard</NavLink>
             <NavLink className="button" to="/my-pets">My Pets</NavLink>
             <NavLink className="button" to="/create">Add Pet</NavLink>
           </div>

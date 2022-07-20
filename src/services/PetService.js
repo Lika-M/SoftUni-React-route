@@ -1,6 +1,6 @@
 const baseURL = 'http://localhost:3030/jsonstore';
 
-export async function PetService() {
+export async function getAll() {
     const response = await fetch(`${baseURL}/pets`);
     const pets = await response.json();
     const result = Object.values(pets)
@@ -16,13 +16,6 @@ export async function create (data){
     const result = await response.json();
     return result;
 }
-
-// export async function getMyItems() {
-//     const response = await fetch(`${baseURL}/pets`);
-//     const pets = await response.json();
-
-//     return result;
-// }
 
 export async function getItemById(id) {
     const response = await fetch(`${baseURL}/pets/${id}`);

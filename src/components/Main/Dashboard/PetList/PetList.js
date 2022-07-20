@@ -1,12 +1,12 @@
-import PetCard from "./PetCard/PetCard.js";
-import { PetService } from "../../../../services/PetService.js";
 import { useState, useEffect } from 'react';
+import PetCard from "./PetCard/PetCard.js";
+import * as petService from "../../../../services/PetService.js";
 
 export default function PetList() {
 
     const [pets, setPets] = useState([]);
     useEffect(() => {
-      PetService()
+      petService.getAll()
         .then(result => {
           setPets(result);
         })
