@@ -1,15 +1,15 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function Header({
-  user,
-  isAuthenticated
+  user
 }) {
 
   const userNav = (
     <div className="second-bar">
       <ul>
         <li>Welcome, {user}!</li>
-        <li><NavLink to="/logout"><i className="fas fa-sign-out-alt"></i> Logout</NavLink></li>
+        <li><NavLink to="/logout"><i className="fas fa-sign-out-alt"></i>Logout</NavLink></li>
+        
       </ul>
     </div>
   );
@@ -33,7 +33,7 @@ export default function Header({
             <NavLink className="button" to="/create">Add Pet</NavLink>
           </div>
 
-        {isAuthenticated
+        {user 
           ? userNav
           : guestNav}
         </section>

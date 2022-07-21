@@ -6,5 +6,5 @@ export default function Logout ({onLogout}){
     authService.logout();
     onLogout();
 
-    return <Navigate to={'/login'} replace={true} />
+    return <Navigate to={'/'} replace={true} />
 }

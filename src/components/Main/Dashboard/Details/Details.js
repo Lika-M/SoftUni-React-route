@@ -24,8 +24,9 @@ export default function Details() {
       <div className="pet-info">
         <a href="/edit"><button className="button">Edit</button></a>
         <a href="/delete"><button className="button">Delete</button></a>
-
+        <i class="fas fa-heart"></i> <span>5</span>
       </div>
     </section>
+
   )
 }

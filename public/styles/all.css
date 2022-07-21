@@ -43,6 +43,7 @@ body {
     color: rgb(255, 255, 255);
     border: none;
     font-size: 1rem;
+    margin-right: 10px;
 
 }
 
@@ -95,6 +96,7 @@ img {
     border-radius: 20px;
     text-align: center;
     box-shadow: 1px 10px 10px grey;
+    margin-bottom: 20px;
 }
 
 .detailsMyPet>p:nth-child(2),
