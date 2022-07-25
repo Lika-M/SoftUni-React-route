@@ -27,7 +27,7 @@ export default function Details() {
     if (isOwner) {
       buttons = (
         <>
-          <a href={`/edit/${petId}`}><button className="button">Edit</button></a>
+          <a href={`edit/${petId}`}><button className="button">Edit</button></a>
           <span><button onClick={onDelete} className="button">Delete</button></span>
         </>
       )

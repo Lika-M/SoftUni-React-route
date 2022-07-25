@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { useState} from 'react';
+// import useLocaleStorage from './hooks/useLocalStorage.js';
 
 import { AuthContext } from './contexts/AuthContext.js';
 import Create from "./components/Main/Create/Create.js";
@@ -13,27 +14,33 @@ import Details from "./components/Main/Dashboard/Details/Details.js";
 import Home from './components/Main/Home/Home.js';
 import MyPets from './components/Main/MyPets/MyPets.js';
 
-function App() {
+const initialUserState = {
+  email: '',
+  _id: '',
+  accessToken: ''
+}
 
-  const [user, setUser] = useState({
-    email: '',
-    _id: '',
-    accessToken: ''
-  });
-  
+export default function App() {
+
+  const [user, setUser] = useState(initialUserState);
+
+        // with custom hook to implement persistance in case of refresh
+  // const [user, setUser] = useLocaleStorage('user',
+  //   initialUserState);
+
 
   function login(userData) {
     setUser(userData);
   }
 
   function logout() {
-//TODO implement
+    setUser(initialUserState);
   }
 
   return (
-    <AuthContext.Provider value={{user, login}}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       <div id="container">
-        {/* all props of object as attributes */}
+        {/* all props of object as an attributes */}
         <Header />
         <main id="site-content">
           <Routes>
@@ -44,7 +51,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/create" element={<Create />} />
             <Route path="/edit/:petId" element={<Edit />} />
-            <Route path="/details/:petId" element={<Details />} />
+            <Route path="/details/:petId/" element={<Details />} />
             <Route path="/my-pets/*" element={<MyPets />} />
           </Routes>
         </main>
@@ -53,4 +60,3 @@ function App() {
   );
 }
 
-export default App;

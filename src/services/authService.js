@@ -47,9 +47,17 @@ export async function register(email, password) {
     }
 }
 
-export async function logout (){
-    localStorage.removeItem('username');
-    return await fetch(`${baseURL}/logout`);
+export async function logout (token){
+    
+   const response = await fetch(`${baseURL}/logout`, {
+        headers: {
+            'X-Authorization': token
+        }
+    });
+
+    localStorage.removeItem('userData');
+    return response;
+  
 }
 
 
