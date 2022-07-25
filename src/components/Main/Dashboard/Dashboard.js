@@ -26,31 +26,6 @@ export default function Dashboard() {
         <Route path='cats' element={<p>All cats here...</p>} />
         <Route path='dogs' element={<p>All dogs here...</p>} />
       </Routes>
-
-      {/* <li className="otherPet">
-          <h3>Name: Gosho</h3>
-          <p>Category: Cat</p>
-          <p className="img"><img src="https://pics.clipartpng.com/Dalmatian_Dog_PNG_Clip_Art-2581.png" /></p>
-          <p className="description">This is not my cat Gosho</p>
-          <div className="pet-info">
-            <a href="#"><button className="button"><i className="fas fa-heart"></i> Pet</button></a>
-            <a href="#"><button className="button">Details</button></a>
-            <i className="fas fa-heart"></i> <span> 2</span>
-          </div>
-
-        </li>
-        <li className="otherPet">
-          <h3>Name: Kiro</h3>
-          <p>Category: Dog</p>
-          <p className="img"><img src="https://pics.clipartpng.com/Chipmunk_PNG_Clip_Art-2544.png" /></p>
-          <p className="description">This is my dog Kiro</p>
-          <div className="pet-info">
-            <a href="#"><button className="button"><i className="fas fa-heart"></i> Pet</button></a>
-            <a href="#"><button className="button">Details</button></a>
-            <i className="fas fa-heart"></i> <span> 4</span>
-          </div>
-        </li> */}
-
     </section>
   )
 }

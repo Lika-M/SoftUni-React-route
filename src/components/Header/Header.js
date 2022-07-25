@@ -1,13 +1,16 @@
 import { NavLink } from 'react-router-dom';
+import { useContext } from 'react';
 
-export default function Header({
-  user
-}) {
+import { AuthContext } from '../../contexts/AuthContext.js';
+
+export default function Header() {
+
+  const {user} = useContext(AuthContext);
 
   const userNav = (
     <div className="second-bar">
       <ul>
-        <li>Welcome, {user}!</li>
+        <li>Welcome, {user.email}!</li>
         <li><NavLink to="/logout"><i className="fas fa-sign-out-alt"></i>Logout</NavLink></li>
         
       </ul>
@@ -29,11 +32,15 @@ export default function Header({
         <section className="navbar-dashboard">
           <div className="first-bar">
             <NavLink to="/dashboard">Dashboard</NavLink>
+            {user.email
+            ? (<>
             <NavLink className="button" to="/my-pets">My Pets</NavLink>
             <NavLink className="button" to="/create">Add Pet</NavLink>
+            </>)
+            : null}
           </div>
 
-        {user 
+        {user.email !== ''
           ? userNav
           : guestNav}
         </section>

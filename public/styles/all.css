@@ -29,7 +29,8 @@ body {
 
 .login form,
 .register form,
-.create form {
+.create form,
+.edit form {
     margin: 5rem auto;
 }
 

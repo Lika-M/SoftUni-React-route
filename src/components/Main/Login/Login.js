@@ -1,17 +1,23 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import * as authService from '../../../services/authService.js'
+import { AuthContext } from '../../../contexts/AuthContext.js';
+
 
 export default function Login({ onLogin }) {
+  const { login } = useContext(AuthContext);
+
   //Controlled form and validation:
+  const [error, setError] = useState('');
   const [userInput, setUserInput] = useState({
     email: '',
     password: ''
   });
-  const [error, setError] = useState('');
 
   const navigate = useNavigate();
+  
   const onLoginNav = (ev) => {
     ev.preventDefault();
 
@@ -21,9 +27,9 @@ export default function Login({ onLogin }) {
 
     authService.login(email, password)
       .then((userData) => {
-
-
-        onLogin(userData);
+        console.log(userData)
+        // login function from Context:
+        login(userData);
 
         navigate('/');
       })
@@ -32,6 +38,7 @@ export default function Login({ onLogin }) {
         console.log(err)
       })
   }
+  
   // Controlled form and Validation
   function onChange(ev) {
     setUserInput(state => ({
@@ -43,7 +50,6 @@ export default function Login({ onLogin }) {
   function isValidEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
   }
-
 
   function validateEmail(ev) {
     let errorMessage = '';
@@ -59,8 +65,8 @@ export default function Login({ onLogin }) {
   function validatePassword(ev) {
     let errorMessage = '';
 
-    if (ev.target.value.length > 10) {
-      errorMessage = 'Password must be no longer than 10 symbols.'
+    if (ev.target.value.length > 15) {
+      errorMessage = 'Password must be no longer than 15 symbols.'
     } else if (ev.target.value.length < 5) {
       errorMessage = 'Password must be at least 5 symbols.'
     }
@@ -92,7 +98,7 @@ export default function Login({ onLogin }) {
               <i className="fas fa-user"></i>
             </span>
             {error.email
-              ? <div style={{ color: 'red' }}>{error.email}</div>
+              ? <p style={{ color: 'red' }}>{error.email}</p>
               : null}
           </p>
           <p className="field">
@@ -110,7 +116,7 @@ export default function Login({ onLogin }) {
               <i className="fas fa-key"></i>
             </span>
             {error.password
-              ? <div style={{ color: 'red' }}>{error.password}</div>
+              ? <p style={{ color: 'red' }}>{error.password}</p>
               : null}
           </p>
           <input className="button submit" type="submit" value="Login" />

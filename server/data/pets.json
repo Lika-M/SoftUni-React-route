@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Hog",
+        "category": "hedgehog",
+        "description": "This is my hedgehog Hog",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/72/Igel.JPG",
+        "likes": []
+    },
+    {
+        "name": "Max",
+        "description": "Lovely dog",
+        "imageUrl": "https://dogtime.com/assets/uploads/gallery/jack-russel-terrier-dog-breed-pictures/2-face.jpg",
+        "category": "dogs",
+        "likes": []
+    },
+    {
+        "name": "Kiki",
+        "description": "Something desc",
+        "imageUrl": "https://i.pinimg.com/736x/b7/25/25/b725259acdea951b39f4391d5aeedb45.jpg",
+        "category": "parrots",
+        "likes": []
+    }
+]
