@@ -1,15 +1,20 @@
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate, Routes, Route } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 
-import * as petService from '../../../../services/PetService.js';
-import { AuthContext } from '../../../../contexts/AuthContext.js';
+import * as petService from '../../../services/PetService.js';
+import { AuthContext } from '../../../contexts/AuthContext.js';
+import Edit from '../Edit/Edit.js';
+import Modal from '../Modal/Modal.js';
+
 
 
 export default function Details() {
 
-  const [pet, setPet] = useState({});
   const { petId } = useParams();
   const { user } = useContext(AuthContext);
+
+  const [pet, setPet] = useState({});
+  const [modal, setModal] = useState({ show: false })
 
   const navigate = useNavigate();
 
@@ -27,8 +32,10 @@ export default function Details() {
     if (isOwner) {
       buttons = (
         <>
-          <a href={`edit/${petId}`}><button className="button">Edit</button></a>
-          <span><button onClick={onDelete} className="button">Delete</button></span>
+          <Link to={`/edit/${pet._id}`} ><button className="button">Edit</button></Link>
+
+          <button onClick={onDelete} className="button">Delete</button>
+
         </>
       )
     } else {
@@ -37,11 +44,22 @@ export default function Details() {
   };
 
   function onDelete(ev) {
-    petService.remove(petId, user.accessToken)
-      .then(result => {
-        navigate('/dashboard')
-      })
+    setModal({ show: true });
+
   };
+
+  function handleDeleteFalse() {
+    setModal({ show: false })
+  }
+
+  function handleDeleteTrue() {
+    if (modal.show) {
+      petService.remove(petId, user.accessToken)
+        .then(result => {
+          navigate('/dashboard/all')
+        });
+    }
+  }
 
   return (
     <section className="myPet">
@@ -52,7 +70,13 @@ export default function Details() {
       <div className="pet-info">
         {buttons}
         <i className="fas fa-heart"></i> <span>Like: {pet.likes?.length}</span>
-      </div>
+      </div> {
+        modal.show && <Modal name={pet.name}
+          handleDeleteTrue={handleDeleteTrue}
+          handleDeleteFalse={handleDeleteFalse}
+        />
+      }
+     
     </section>
 
   )

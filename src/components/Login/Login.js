@@ -2,11 +2,11 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-import * as authService from '../../../services/authService.js'
-import { AuthContext } from '../../../contexts/AuthContext.js';
+import * as authService from '../../services/authService.js'
+import { AuthContext } from '../../contexts/AuthContext.js';
 
 
-export default function Login({ onLogin }) {
+export default function Login() {
   const { login } = useContext(AuthContext);
 
   //Controlled form and validation:

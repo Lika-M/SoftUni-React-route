@@ -2,38 +2,38 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as petService from '../../../services/PetService.js'
 import { AuthContext } from '../../../contexts/AuthContext.js';
-import './Edit.css'
 
-export default function Edit() {
-  const {user} =useContext(AuthContext);
+export default function Create() {
+  // to get accessToken from AuthContext:
+  const { user } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
-  const onEdit = (ev) => {
+  const onCreate = (ev) => {
     ev.preventDefault();
 
-  //   const formData = new FormData(ev.currentTarget);
-  //   const pet = Object.fromEntries(formData);
-
-  //   //validation without controlled form
-  //   const isEmptyField = Object.values(pet).some(x => x==='');
-
-  //   if (isEmptyField){
-  //     return alert ('All fields are required');
-  //   }
-
-  //   petService.edit({
-  //    ...pet,
-  //     likes: []
-  //   }, user.accessToken)
-  //     .then(result => {
-  //       navigate('/dashboard/all')
-  //     })
-
+    const formData = new FormData(ev.currentTarget);
+    const pet = Object.fromEntries(formData);
+    
+    //validation without controlled form
+    const isEmptyField = Object.values(pet).some(x => x === '');
+    
+    if (isEmptyField) {
+      return alert('All fields are required');
+    }
+    
+    petService.create({
+      ...pet,
+      likes: []
+    }, user.accessToken)
+    .then(result => {
+        navigate('/dashboard')
+      })
   }
 
   return (
-    <section className="edit">
-      <form onSubmit={onEdit} method="post">
+    <section className="create">
+      <form onSubmit={onCreate} method="post">
         <fieldset>
           <legend>Add new Pet</legend>
           <p className="field">
@@ -54,7 +54,7 @@ export default function Edit() {
           <p className="field">
             <label htmlFor="image">Image</label>
             <span className="input">
-              <input type="text" name="imageURL" id="image" placeholder="Image" />
+              <input type="text" name="imageUrl" id="image" placeholder="Image" />
               <span className="actions"></span>
             </span>
           </p>
@@ -71,7 +71,7 @@ export default function Edit() {
               <span className="actions"></span>
             </span>
           </p>
-          <input className="button submit" type="submit" value="Edit Pet" />
+          <input className="button submit" type="submit" value="Add Pet" />
         </fieldset>
       </form>
     </section>

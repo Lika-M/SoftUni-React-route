@@ -27,20 +27,26 @@ export async function create(data, token) {
     return result;
 }
 
+export async function edit(data, token, id) {
+    const response = await fetch(`${baseURL}/pets/${id}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json',
+            'X-Authorization': token
+        },
+        body: JSON.stringify(data)
+    });
 
-
-export async function edit (id){
-    const response = await fetch(`${baseURL}/pets/${id}`);
     const result = await response.json();
     return result;
 }
 
-export async function remove(id, token){
+export async function remove(id, token) {
     const response = await fetch(`${baseURL}/pets/${id}`, {
         method: 'DELETE',
         headers: {
             'X-Authorization': token
-        } 
+        }
     });
     return await response.json();
 }

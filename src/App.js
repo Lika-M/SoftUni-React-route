@@ -1,18 +1,18 @@
 import { Routes, Route } from 'react-router-dom';
 import { useState} from 'react';
-// import useLocaleStorage from './hooks/useLocalStorage.js';
+import useLocaleStorage from './hooks/useLocalStorage.js';
 
 import { AuthContext } from './contexts/AuthContext.js';
-import Create from "./components/Main/Create/Create.js";
-import Edit from "./components/Main/Edit/Edit.js";
-import Dashboard from "./components/Main/Dashboard/Dashboard.js";
+import Create from "./components/Dashboard/Create/Create.js";
+import Edit from "./components/Dashboard/Edit/Edit.js";
+import Dashboard from "./components/Dashboard/Dashboard.js";
 import Header from "./components/Header/Header.js";
-import Login from "./components/Main/Login/Login.js"
-import Logout from "./components/Main/Logout/Logout.js";
-import Register from "./components/Main/Register/Register.js";
-import Details from "./components/Main/Dashboard/Details/Details.js";
-import Home from './components/Main/Home/Home.js';
-import MyPets from './components/Main/MyPets/MyPets.js';
+import Login from "./components/Login/Login.js"
+import Logout from "./components/Logout/Logout.js";
+import Register from "./components/Register/Register.js";
+import Details from "./components/Dashboard/Details/Details.js";
+import Home from './components/Home/Home.js';
+
 
 const initialUserState = {
   email: '',
@@ -22,11 +22,11 @@ const initialUserState = {
 
 export default function App() {
 
-  const [user, setUser] = useState(initialUserState);
+  // const [user, setUser] = useState(initialUserState);
 
         // with custom hook to implement persistance in case of refresh
-  // const [user, setUser] = useLocaleStorage('user',
-  //   initialUserState);
+  const [user, setUser] = useLocaleStorage('user',
+    initialUserState);
 
 
   function login(userData) {
@@ -50,9 +50,9 @@ export default function App() {
             <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<Register />} />
             <Route path="/create" element={<Create />} />
+            <Route path="/details/:petId" element={<Details />} />
             <Route path="/edit/:petId" element={<Edit />} />
-            <Route path="/details/:petId/" element={<Details />} />
-            <Route path="/my-pets/*" element={<MyPets />} />
+    
           </Routes>
         </main>
       </div>
