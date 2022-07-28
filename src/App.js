@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState} from 'react';
+// import { useState } from 'react';
 import useLocaleStorage from './hooks/useLocalStorage.js';
 
 import { AuthContext } from './contexts/AuthContext.js';
@@ -24,27 +24,28 @@ export default function App() {
 
   // const [user, setUser] = useState(initialUserState);
 
-        // with custom hook to implement persistance in case of refresh
+  // with custom hook to implement persistance in case of refresh
   const [user, setUser] = useLocaleStorage('user',
     initialUserState);
 
 
-  function login(userData) {
+  function userLogin(userData) {
     setUser(userData);
   }
 
-  function logout() {
+  function userLogout() {
     setUser(initialUserState);
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, userLogin, userLogout }}>
       <div id="container">
         {/* all props of object as an attributes */}
         <Header />
         <main id="site-content">
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path="/dashboard/:category" element={<Dashboard whatEver="something" />} />
             <Route path="/dashboard/*" element={<Dashboard whatEver="something" />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
@@ -52,7 +53,7 @@ export default function App() {
             <Route path="/create" element={<Create />} />
             <Route path="/details/:petId" element={<Details />} />
             <Route path="/edit/:petId" element={<Edit />} />
-    
+
           </Routes>
         </main>
       </div>

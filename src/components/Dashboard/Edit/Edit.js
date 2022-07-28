@@ -2,7 +2,7 @@ import { useContext, useState, useEffect} from 'react';
 import { useNavigate,  useParams } from 'react-router-dom';
 
 
-import * as petService from '../../../services/PetService.js'
+import * as petService from '../../../services/dataService.js'
 import { AuthContext } from '../../../contexts/AuthContext.js';
 import './Edit.css'
 
@@ -10,9 +10,9 @@ import './Edit.css'
 export default function Edit() {
 
   const {user} =useContext(AuthContext);
-  const { petId } = useParams();
-
   const [pet, setPet] = useState({});
+  
+  const { petId } = useParams();
 
   const navigate = useNavigate();
 
@@ -36,10 +36,10 @@ export default function Edit() {
       return alert ('All fields are required');
     }
 
-    petService.edit({
+    petService.editItem({
      ...pet,
       likes: []
-    }, user.accessToken, petId)
+    }, petId)
       .then(result => {
         navigate('/dashboard')
       })

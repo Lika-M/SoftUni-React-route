@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as petService from '../../../services/PetService.js'
+import * as petService from '../../../services/dataService.js'
 import { AuthContext } from '../../../contexts/AuthContext.js';
 
 export default function Create() {
@@ -22,7 +22,7 @@ export default function Create() {
       return alert('All fields are required');
     }
     
-    petService.create({
+    petService.createItem({
       ...pet,
       likes: []
     }, user.accessToken)

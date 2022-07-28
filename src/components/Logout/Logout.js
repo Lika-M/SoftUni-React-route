@@ -8,16 +8,16 @@ import { AuthContext } from '../../contexts/AuthContext.js';
 export default function Logout() {
 
     const navigate = useNavigate();
-    const { user, logout } = useContext(AuthContext);
+    const { user, userLogout } = useContext(AuthContext);
 
     useEffect(() => {
         authService.logout(user.accessToken)
             .then(() => {
 
-                logout();
+                userLogout();
                 navigate('/dashboard')
             });
-    }, [user.accessToken, logout, navigate]);
+    }, [user.accessToken, userLogout, navigate]);
 
     
     return null;

@@ -7,10 +7,14 @@ import { AuthContext } from '../../contexts/AuthContext.js';
 
 
 export default function Login() {
-  const { login } = useContext(AuthContext);
+  const { userLogin } = useContext(AuthContext);
 
   //Controlled form and validation:
-  const [error, setError] = useState('');
+  const [error, setError] = useState({
+    email: '',
+    password: '',
+    both: ''
+  });
   const [userInput, setUserInput] = useState({
     email: '',
     password: ''
@@ -29,13 +33,19 @@ export default function Login() {
       .then((userData) => {
         console.log(userData)
         // login function from Context:
-        login(userData);
+        userLogin(userData);
 
         navigate('/');
       })
       .catch(err => {
-        //TODO notification
-        console.log(err)
+        // setError(state => ({
+        //   ...state,
+        //   both: err
+        // }))
+        //TODO notation
+  
+        alert(err);
+       
       })
   }
   
@@ -79,6 +89,7 @@ export default function Login() {
 
   return (
     <section className="login">
+    
       <form onSubmit={onLoginNav} method="post">
         <fieldset>
           <legend>Login</legend>
@@ -120,6 +131,9 @@ export default function Login() {
               : null}
           </p>
           <input className="button submit" type="submit" value="Login" />
+          {error.both
+              ? <p style={{ color: 'red' }}>{error.both}</p>
+              : null} 
         </fieldset>
       </form>
     </section>

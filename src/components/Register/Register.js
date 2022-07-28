@@ -8,7 +8,7 @@ import { AuthContext } from '../../contexts/AuthContext.js';
 
 export default function Register() {
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
+  const { userLogin } = useContext(AuthContext);
 
   function onRegisterNav(ev) {
     ev.preventDefault();
@@ -26,7 +26,7 @@ export default function Register() {
 
     authService.register(email, password)
       .then(userData => {
-        login(userData);
+        userLogin(userData);
 
         navigate('/dashboard')
       });

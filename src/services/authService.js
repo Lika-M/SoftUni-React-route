@@ -1,77 +1,49 @@
+import { get, post } from './api.js';
 
-const baseURL = 'http://localhost:3030/users';
+const endpoints = {
+    'register': '/users/register',
+    'login': '/users/login',
+    'logout': '/users/logout'
+}
 
+export function getUserData() {
+    return JSON.parse(localStorage.getItem('userData'));
+}
 
+export function setUserData(data) {
+    localStorage.setItem('userData', JSON.stringify(data));
+}
 
-export async function login(email, password) {
-    const response = await fetch(`${baseURL}/login`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-    })
-    const result = await response.json();
-
-    if (response.ok) {
-        const userData = {
-            _id: result._id,
-            email: result.email,
-            token: result.accessToken
-        }
-        localStorage.setItem('userData', JSON.stringify(userData));
-        return result;
-    } else {
-        throw result.message;
-    }
+export function clearUserData() {
+    localStorage.removeItem('userData');
 }
 
 export async function register(email, password) {
-    const response = await fetch(`${baseURL}/register`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-    })
-    const result = await response.json();
-
-    if (response.ok) {
-        const userData = {
-            _id: result._id,
-            email: result.email,
-            token: result.accessToken
-        }
-        localStorage.setItem('userData', JSON.stringify(userData));
-        return result;
-    } else {
-        throw result.message;
+    const result = await post(endpoints.register, { email, password});
+    const userData = {
+        _id: result._id,
+        email: result.email,
+        password: result.password,
+        token: result.accessToken
     }
+    setUserData(userData);
+    return result;
 }
 
-export async function logout (token){
-    
-   const response = await fetch(`${baseURL}/logout`, {
-        headers: {
-            'X-Authorization': token
-        }
-    });
-
-    localStorage.removeItem('userData');
-    return response;
-  
+export async function login(email, password) {
+    const result = await post(endpoints.login, { email, password });
+    const userData = {
+        _id: result._id,
+        email: result.email,
+        password: result.password,
+        token: result.accessToken
+    }
+    setUserData(userData);
+    return result;
 }
 
-
-export function getUserData() {
-    const username = localStorage.getItem('username');
-    return username;
+export async function logout() {
+    get(endpoints.logout);
+    clearUserData();
 }
-
-// export function isAuthenticated() {
-//     return Boolean(getUserData());
-// }
-
-
-
 

@@ -1,7 +1,7 @@
 import { useParams, Link, useNavigate, Routes, Route } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 
-import * as petService from '../../../services/PetService.js';
+import * as petService from '../../../services/dataService.js';
 import { AuthContext } from '../../../contexts/AuthContext.js';
 import Edit from '../Edit/Edit.js';
 import Modal from '../Modal/Modal.js';
@@ -54,7 +54,7 @@ export default function Details() {
 
   function handleDeleteTrue() {
     if (modal.show) {
-      petService.remove(petId, user.accessToken)
+      petService.deleteItemById(petId, user.accessToken)
         .then(result => {
           navigate('/dashboard/all')
         });
