@@ -32,7 +32,7 @@ export default function Dashboard() {
           <li><Link to="/dashboard/dogs">Dogs</Link></li>
           <li><Link to="/dashboard/parrots">Parrots</Link></li>
           <li><Link to="/dashboard/reptiles">Reptiles</Link></li>
-          <li><Link to="/dashboard/others">Other</Link></li>
+          <li><Link to="/dashboard/other">Other</Link></li>
         </ul>
         </nav>
      <PetList pets={pets.pets}/>

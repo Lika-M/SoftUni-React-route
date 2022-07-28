@@ -1,7 +1,7 @@
 import * as api from './api.js';
 
 const endpoints = {
-    all: '/data/pets', 
+    all: '/data/pets?sortBy=_createdOn%20desc&distinct=category', 
     create: '/data/pets',
     itemById: '/data/pets/',
     edit: '/data/pets/',
@@ -10,7 +10,7 @@ const endpoints = {
 
 export async function getAll(category=''){
     if(category && category !== 'all'){
-        const url=`/data/pets?category=${category}`;
+        const url=`/data/pets?where=category%3D%22${category}%22`;
         return api.get(url)
     }
     return api.get(endpoints.all)
