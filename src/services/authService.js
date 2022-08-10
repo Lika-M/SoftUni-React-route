@@ -1,4 +1,4 @@
-import { get, post } from './api.js';
+import { get, post, put, del } from './api.js';
 
 const endpoints = {
     'register': '/users/register',

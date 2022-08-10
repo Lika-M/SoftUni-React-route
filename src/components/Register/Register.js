@@ -5,10 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import * as authService from '../../services/authService.js'
 import { AuthContext } from '../../contexts/AuthContext.js';
 
-
 export default function Register() {
-  const navigate = useNavigate();
   const { userLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   function onRegisterNav(ev) {
     ev.preventDefault();
@@ -21,6 +20,7 @@ export default function Register() {
     // TODO control form and validation
 
     if(password !== repass){
+      //TODO error message
       return
     }
 

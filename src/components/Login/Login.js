@@ -8,8 +8,6 @@ import { AuthContext } from '../../contexts/AuthContext.js';
 
 export default function Login() {
   const { userLogin } = useContext(AuthContext);
-
-  //Controlled form and validation:
   const [error, setError] = useState({
     email: '',
     password: '',
@@ -21,7 +19,7 @@ export default function Login() {
   });
 
   const navigate = useNavigate();
-  
+
   const onLoginNav = (ev) => {
     ev.preventDefault();
 
@@ -31,38 +29,33 @@ export default function Login() {
 
     authService.login(email, password)
       .then((userData) => {
-        console.log(userData)
-        // login function from Context:
         userLogin(userData);
-
         navigate('/');
       })
       .catch(err => {
-        // setError(state => ({
-        //   ...state,
-        //   both: err
-        // }))
-        //TODO notation
-  
+        setError(state => ({
+          ...state,
+          both: err
+        }))
+        //TODO notification
         alert(err);
-       
       })
   }
-  
-  // Controlled form and Validation
+
   function onChange(ev) {
     setUserInput(state => ({
       ...state,
       [ev.target.name]: ev.target.value
     }));
   };
-  // returns true or false
+
   function isValidEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
   }
 
+  let errorMessage = '';
+
   function validateEmail(ev) {
-    let errorMessage = '';
 
     if (!isValidEmail(ev.target.value)) {
       errorMessage = 'Enter valid email.'
@@ -72,27 +65,30 @@ export default function Login() {
       email: errorMessage
     }))
   }
+
   function validatePassword(ev) {
-    let errorMessage = '';
 
     if (ev.target.value.length > 15) {
       errorMessage = 'Password must be no longer than 15 symbols.'
     } else if (ev.target.value.length < 5) {
       errorMessage = 'Password must be at least 5 symbols.'
     }
-
     setError(state => ({
       ...state,
       password: errorMessage
     }))
   }
+  
+  console.log(error)
 
   return (
     <section className="login">
-    
+
       <form onSubmit={onLoginNav} method="post">
         <fieldset>
-          <legend>Login</legend>
+          <legend>{error.both
+            ? <p style={{ color: 'red' }}>{error.both}</p>
+            : "Login"}</legend>
           <p className="field">
             <label htmlFor="email">Email</label>
             <span className="input">
@@ -108,16 +104,17 @@ export default function Login() {
               <span className="actions"></span>
               <i className="fas fa-user"></i>
             </span>
-            {error.email
-              ? <p style={{ color: 'red' }}>{error.email}</p>
-              : null}
           </p>
+          {error.email
+            ? <p style={{ color: 'red' }}>{error.email}</p>
+            : null}
           <p className="field">
             <label htmlFor="password">Password</label>
             <span className="input">
               <input
                 type="password"
-                name="password" id="password"
+                name="password"
+                id="password"
                 placeholder="Password"
                 value={userInput.password}
                 onChange={onChange}
@@ -126,14 +123,12 @@ export default function Login() {
               <span className="actions"></span>
               <i className="fas fa-key"></i>
             </span>
-            {error.password
-              ? <p style={{ color: 'red' }}>{error.password}</p>
-              : null}
           </p>
+          {error.password
+            ? <p style={{ color: 'red' }}>{error.password}</p>
+            : null}
           <input className="button submit" type="submit" value="Login" />
-          {error.both
-              ? <p style={{ color: 'red' }}>{error.both}</p>
-              : null} 
+
         </fieldset>
       </form>
     </section>

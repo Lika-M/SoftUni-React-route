@@ -40,7 +40,6 @@ export default function App() {
   return (
     <AuthContext.Provider value={{ user, userLogin, userLogout }}>
       <div id="container">
-        {/* all props of object as an attributes */}
         <Header />
         <main id="site-content">
           <Routes>

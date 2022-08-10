@@ -71,12 +71,14 @@ export default function Details() {
         {buttons}
         <i className="fas fa-heart"></i> <span>Like: {pet.likes?.length}</span>
       </div> {
-        modal.show && <Modal name={pet.name}
+        modal.show &&
+        <Modal
+          name={pet.name}
           handleDeleteTrue={handleDeleteTrue}
           handleDeleteFalse={handleDeleteFalse}
         />
       }
-     
+
     </section>
 
   )

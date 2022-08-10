@@ -13,7 +13,7 @@ export default function Modal({
         <article id="delete-modal" className="modal" onClick={handleDeleteFalse}>   
             <form className="modal-content" >
                 <div className="container">
-                    <h1> Do you really want to delete (these records) {name}?</h1>
+                    <h1> Do you really want to delete {name}?</h1>
                     <p>This process cannot be undone.</p>
                  
                     <div className="clear-buttons">
