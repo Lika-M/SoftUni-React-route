@@ -1,10 +1,13 @@
 ## About The Project
 
-This app was created for the educational purposes of the ReactJS-Softuni Course, June 2021. It was designed as a place for garden design enthusiasts who search for and exchange knowledge. It provides personal space to registered users (users) and reading and browsing access to unregistered users (guests).
+This app was created for the educational purposes of the ReactJS-Softuni Course, June 2021. It was designed as a place for garden design enthusiasts who search for and exchange knowledge. It provides personal space to registered users and reading and browsing access to unregistered guests.
 
-<img src="/images/1.jpg" width="400"><img src="/images/4.jpg" width="400">
-<img src="/images/3.jpg" width="400"><img src="/images/5.jpg" width="400">
-
+<img src="/images/img-1.jpg" width="300">
+<img src="/images/img-2.jpg" width="300">
+<img src="/images/img-3.jpg" width="300">
+<img src="/images/img-4.jpg" width="300">
+<img src="/images/img-5.jpg" width="300">
+<img src="/images/img-6.jpg" width="300">
 
 
 ## Public part
@@ -30,10 +33,8 @@ This app was created for the educational purposes of the ReactJS-Softuni Course,
 5.	Delete: allows you delete your own item after confirmation
 
 ## Technical Description
-
 ### Built With:
 React.JS, JavaScript, CSS, HTML 
-
 ### Database storage:
 SoftUni Practice Server
 
