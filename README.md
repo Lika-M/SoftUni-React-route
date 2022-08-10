@@ -1,6 +1,6 @@
 ## About The Project
 
-This app was created for the educational purposes of the ReactJS-Softuni Course, June 2021. It was designed as a place for garden design enthusiasts who search for and exchange knowledge. It provides personal space to registered users and reading and browsing access to unregistered guests.
+This app was created for the educational purposes of the ReactJS-Softuni Course, June 2021. It was designed as a place for garden design enthusiasts who search for and exchange knowledge. It provides personal space to registered users and reading and browsing access to guests.
 
 <img src="/images/img-1.jpg" width="300">
 <img src="/images/img-2.jpg" width="300">
@@ -8,34 +8,38 @@ This app was created for the educational purposes of the ReactJS-Softuni Course,
 <img src="/images/img-4.jpg" width="300">
 <img src="/images/img-5.jpg" width="300">
 
-
 ## Public part
 
-### The public part of the project is visible without authentication, intended for users with free access:
+### The public part of the project is visible without authentication, 
+### intended for users with free access:
 
-1.	Home page - main page that introduces the user to the content
-2.	About - place to add articles about growing plants and ideas for decorating the outdoor space
-3.	Catalog - where the user can take up all available plant list with options to select type
-4.	Details - a page offering more detailed information about plants such as: type, environmental requirements, etc.
-5.	Login - where located the login form for already registered users
-6.	Register - where the register form for non-users is located
-
+1.  Home page - main page that introduces the user to the content
+2.  About - place to add articles about growing plants and ideas for decorating the outdoor
+    space
+3.  Catalog - where the user can take up the whole available plant list with options to
+    select type
+4.  Details - a page offering more detailed information about plants such as 
+    type, environmental requirements, etc.
+5.  Login - where the login form for already registered users is located 
+6.  Register - where the register form for non-users is located
 
 ## Private part 
 
 ### Тhe private part of the project is only available to registered users:
 
-1.	My List - profile page where an authorized user can create their own listing
-2.	Details - allows the creator to edit or delete content, other users can vote on plants they like
-3.	Create - form to create your own item
-4.	Edit - form to edit your item
-5.	Delete - allows you delete your own item after confirmation
+1.  My List - profile page where an authorized user can create their own listing
+2.  Details - allows the creator to edit or delete content, other users can vote on plants
+    they like
+3.  Create - form to create your own item
+4.  Edit - form to edit your item
+5.  Delete - allows you то delete your own item after confirmation
 
 ## Technical Description
 ### Built With:
 React.JS, JavaScript, CSS, HTML 
 ### Database storage:
 SoftUni Practice Server
+
 
 ### Getting Started with Create React App
 
